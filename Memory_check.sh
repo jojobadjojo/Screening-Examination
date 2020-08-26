@@ -51,7 +51,7 @@ else
 fi
 
 if [ $w -e 60 ]; then
-	crit_func
+	warn_func
 else
 	usage
 fi
