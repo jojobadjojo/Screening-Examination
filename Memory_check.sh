@@ -28,20 +28,20 @@
 
 
 		if [ $c -eq 90 ] && [ $w -eq 60 ]; then
-				if [ $u_MemSpace -ge 90 ] && [ $u_MemSpace -le 100 ]; then
+				if [ $u_MemSpace -ge 9 ] && [ $u_MemSpace -le 100 ]; then
 					echo "ALERT: Memory Space is in $u_MemSpace%. Status: CRITICAL!"
 					echo "Sending the top 10 processes that used most of your Memory Space to the email you provided. . . ."
 					{
 						echo To: $e
 						echo From: $e_Sender
 						echo Subject: $e_Subj
-						echo -e Hi Team,\n\nPlease see the details below.\n\n
+						echo -e "Hi Team,\n\nPlease see the details below.\n\n"
 							top -b | awk '!(NR<=6) {print}' | head -10
-						echo -e \n\nThank you.
+						echo -e "\n\nThank you."
 					} | ssmtp $e
 					echo "Email Sent!"
 
-				elif [ $u_MemSpace -ge 60 ] && [ $u_MemSpace -le 89 ]; then
+				elif [ $u_MemSpace -ge 6 ] && [ $u_MemSpace -le 9 ]; then
 					echo "ALERT: Memory Space is $u_MemSpace%. Status: WARNING"
 					exit $warn;
 				else
