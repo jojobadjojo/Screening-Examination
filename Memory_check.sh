@@ -8,12 +8,13 @@
 				
 		e_Subj=$(date +'%Y%m%d %H:%M') # email subject
 		
+		
 		warn=1
 		okay=0
 
 		usage(){
 			echo "USAGE: $0 [-c 90] [-w 60] [-e <email address>]"  # Error Handler
-			exit 2;
+			exit $warn;
 		}
 		######################### M A I N #################################
 		while getopts 'c:w:e:' opt ; 
@@ -42,10 +43,10 @@
 					echo "Email Sent!"
 
 				elif [ $u_MemSpace -ge 60 ] && [ $u_MemSpace -le 89 ]; then
-					echo "ALERT: Memory Space is $u_MemSpace%. Status: WARNING"	
+					echo "ALERT: Memory Space is $u_MemSpace%. Status: WARNING!"	
 					exit $warn;
 				else
-					echo "Memory Space is $u_MemSpace %. Status: OKAY"
+					echo "Memory Space is $u_MemSpace%. Status: OKAY"
 					exit $okay;
 			    fi
 		else
