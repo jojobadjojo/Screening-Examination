@@ -24,6 +24,7 @@ class  curl	{
     	ensure => installed,
  	}
 }
+
 class add_user {
         user { 'monitor':
                 ensure => 'present',
@@ -31,6 +32,7 @@ class add_user {
                 shell => "/bin/bash",
         }
 }
+
 class directories {
         file { '/home/monitor/scripts/':
                 ensure => 'directory',
@@ -42,6 +44,7 @@ class directories {
                 path => "/home/monitor/scripts"
         }
 }
+
 class src_link {
         file { '/home/monitor/src/':
                 ensure => 'directory',
@@ -53,4 +56,10 @@ class src_link {
         	target =>  '/home/monitor/src/my_memory_check'
 
         }
+}
+
+cron { 'memory_check'
+	command => "/home/monitor/src/my_memory_check",
+	user => "monitor",
+	minute => 10,
 }
