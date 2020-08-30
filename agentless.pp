@@ -56,10 +56,10 @@ class src_link {
         	target =>  '/home/monitor/src/my_memory_check'
 
         }
+        cron { 'my_memory_check':
+			command => "/bin/bash /home/monitor/src/my_memory_check",
+			user => "monitor",
+			minute => 10,
+		}
 }
 
-cron { 'memory_check'
-	command => "/home/monitor/src/my_memory_check",
-	user => "monitor",
-	minute => 10,
-}
